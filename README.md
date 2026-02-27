@@ -1,92 +1,72 @@
 # Giffy
 
-A fast, browser-based video to GIF converter with quality control and aggressive compression.
+A browser-based video to GIF converter. Upload a video, trim it, pick a quality preset, and download a GIF — everything happens locally in the browser using FFmpeg compiled to WebAssembly.
 
-## Features
+![video to gif converter](https://media.giphy.com/media/3oEjHFOscgNwdSRRDy/giphy.gif)
 
-- Browser-based processing with complete privacy
-- Fast conversion using FFmpeg.wasm
-- Three quality presets with live file size estimates
-- Aggressive compression for smaller files
-- Copy to clipboard for instant sharing
-- Native share sheet support on mobile
-- Keyboard shortcuts for power users
-- Mobile-optimized interface
-- Real-time processing feedback with time estimates
+[Live Demo](https://giffy-sand-kappa.vercel.app)
+
+## How it works
+
+FFmpeg.wasm runs entirely in the browser. No files are uploaded to a server. Your video never leaves your device.
 
 ## Quality Presets
 
-**Low Quality**
-- Resolution: 240p
-- Frame rate: 6 fps
-- Target size: 1-2 MB for typical clips
-- Best for: Quick sharing, messaging apps
+| Preset | Resolution | FPS  | Approx. size (5s clip) |
+|--------|------------|------|------------------------|
+| Low    | 240p       | 6    | 1–2 MB                 |
+| Medium | 320p       | 8    | 3–5 MB                 |
+| High   | 420p       | 12   | 6–8 MB                 |
 
-**Medium Quality**
-- Resolution: 320p
-- Frame rate: 8 fps
-- Target size: 3-5 MB for typical clips
-- Best for: Social media, general use
-
-**High Quality**
-- Resolution: 420p
-- Frame rate: 12 fps
-- Target size: 6-8 MB for typical clips
-- Best for: Quality-focused sharing
-
-## Keyboard Shortcuts
-
-- `Space` - Play/Pause video
-- `←` / `→` - Seek backward/forward 1 second
-- `Home` - Jump to trim start
-- `End` - Jump to trim end
-
-## Tech Stack
+## Stack
 
 - Next.js 15
 - React 19
 - TypeScript
 - FFmpeg.wasm
-- Neo-brutalist design system
+- Tailwind CSS
 
-## Privacy
+## Getting Started
 
-All video processing happens entirely in your browser. No files are uploaded to any server. Your videos never leave your device.
+```bash
+npm install
+npm run dev
+```
 
-## Performance
+Open [http://localhost:3000](http://localhost:3000).
 
-Typical conversion times:
-- 5 second clip: 5-10 seconds
-- 10 second clip: 10-20 seconds
-- 30 second clip: 30-60 seconds
+```bash
+npm run build   # production build
+```
 
-Times vary based on quality setting and device performance.
+## Project Structure
+
+```
+Giffy/
+├── app/            # Next.js app router pages and layout
+├── docs/           # Design notes
+├── next.config.ts
+└── tailwind.config.ts
+```
 
 ## Browser Support
 
-Works best on modern browsers with WebAssembly support:
+Requires WebAssembly and SharedArrayBuffer support (cross-origin isolation headers are configured in `next.config.ts`):
+
 - Chrome 87+
 - Firefox 89+
 - Safari 15.2+
 - Edge 87+
 
-## Development
+## Keyboard Shortcuts
 
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-```
+| Key       | Action                      |
+|-----------|-----------------------------|
+| `Space`   | Play / Pause preview        |
+| `← / →`   | Seek backward / forward 1s  |
+| `Home`    | Jump to trim start          |
+| `End`     | Jump to trim end            |
 
 ## License
 
 MIT
-
-## Live Demo
-
-Visit: https://giffy-sand-kappa.vercel.app
